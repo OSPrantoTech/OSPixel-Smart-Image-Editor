@@ -13,11 +13,16 @@ const manrope = Manrope({
   display: "swap",
 })
 
+// === Favicon যোগ করা হয়েছে ===
 export const metadata: Metadata = {
   title: "OSPixel - Advanced Image Format Converter",
   description: "Professional image format converter with advanced features and modern design",
   generator: "v0.app",
+  icons: { // <--- এই অংশটি যোগ করা হয়েছে
+    icon: '/logo.png',
+  },
 }
+// =============================
 
 export default function RootLayout({
   children,
