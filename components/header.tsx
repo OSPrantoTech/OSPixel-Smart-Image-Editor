@@ -104,7 +104,7 @@ export function Header() {
               </svg>
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">ImageForge</h1>
+              <h1 className="text-xl font-bold text-foreground">OSPixel</h1>
               <p className="text-xs text-muted-foreground font-manrope">Advanced Converter</p>
             </div>
           </div>
