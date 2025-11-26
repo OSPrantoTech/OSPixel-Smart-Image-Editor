@@ -14,7 +14,7 @@ const manrope = Manrope({
 })
 
 export const metadata: Metadata = {
-  title: "ImageForge - Advanced Image Format Converter",
+  title: "OSPixel - Advanced Image Format Converter",
   description: "Professional image format converter with advanced features and modern design",
   generator: "v0.app",
 }
