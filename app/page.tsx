@@ -1,7 +1,6 @@
 // =======================================================
-// File: page.tsx - Final Minimalistic UI
-// Branding: OSPranto Tech - Technology with a Sense of Ease
-// Description: Compact, premium design with removed contact section.
+// File: page.tsx - Hyper-Minimalistic UI (Space Fixed)
+// Description: Reduced all unnecessary vertical space and padding.
 // =======================================================
 
 "use client"
@@ -86,20 +85,20 @@ export default function HomePage() {
 
       <main className="flex-1">
         
-        {/* Converter Section: প্যাডিং কমানো হয়েছে এবং আরও কম্প্যাক্ট করা হয়েছে */}
+        {/* Converter Section: উল্লম্ব স্পেস ব্যাপকভাবে কমানো হয়েছে */}
         <section 
             id="converter" 
             className="
-                py-10 px-4 
-                min-h-[calc(100vh-120px)] 
+                py-8 px-4 
+                min-h-[calc(100vh-100px)] 
                 flex items-center justify-center
             "
         >
-          <div className="container mx-auto max-w-6xl space-y-8"> {/* space-y-12 থেকে 8 করা হলো */}
+          <div className="container mx-auto max-w-6xl space-y-6"> {/* space-y-8 থেকে 6 করা হলো */}
             
-                {/* হেডলাইন: ব্র্যান্ডিং সহ */}
-            <div className="text-center space-y-1"> {/* space-y-2 থেকে 1 করা হলো */}
-              <h2 className="text-3xl font-extrabold text-blue-400">OSPixel Converter</h2> {/* ফন্ট সাইজ সামান্য কমানো হয়েছে */}
+                {/* হেডলাইন: গ্যাপ এবং ফন্ট সাইজ কমানো হয়েছে */}
+            <div className="text-center space-y-0.5"> {/* space-y-1 থেকে 0.5 করা হলো */}
+              <h2 className="text-3xl font-extrabold text-blue-400">OSPixel Converter</h2>
               <p className="text-md text-gray-400 font-manrope max-w-2xl mx-auto">
                     OSPranto Tech: Technology with a Sense of Ease
               </p>
@@ -108,7 +107,7 @@ export default function HomePage() {
             {/* Upload Section: ছোট এবং প্রিমিয়াম ডিজাইন */}
             {uploadedFiles.length === 0 ? (
                 // --- আপলোড বক্সের নতুন, ছোট এবং প্রিমিয়াম স্টাইল ---
-                <div className="flex justify-center pt-4"> {/* অতিরিক্ত স্পেস কমানো হয়েছে */}
+                <div className="flex justify-center pt-2"> {/* pt-4 থেকে 2 করা হলো */}
                     <div 
                         className="
                             bg-gray-800 
@@ -126,7 +125,7 @@ export default function HomePage() {
                 </div>
             ) : (
                 // --- যদি ফাইল আপলোড হয়ে যায়, তবে সেটিংস এবং প্রিভিউ সেকশন দেখাবে ---
-                <div className="grid gap-6 lg:grid-cols-3 pt-4"> {/* gap এবং pt কমানো হয়েছে */}
+                <div className="grid gap-6 lg:grid-cols-3 pt-4"> {/* pt-4 রাখা হলো, কারণ সেটিংসের জন্য একটু স্পেস প্রয়োজন */}
                     <div className="lg:col-span-2 space-y-6">
                         <FormatSelector onSettingsChange={setConversionSettings} />
                         
@@ -145,7 +144,6 @@ export default function HomePage() {
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        {/*... বাকি প্রিভিউ Overlay ...*/}
                                     </div>
                                 ))}
                                 {uploadedFiles.length > 8 && (
@@ -215,7 +213,7 @@ export default function HomePage() {
 
             {/* Results Section */}
             {conversionResults.length > 0 && (
-              <div className="bg-gray-800 p-6 border border-gray-700 rounded-lg mt-6"> {/* p-8 থেকে p-6 এবং mt-6 করা হলো */}
+              <div className="bg-gray-800 p-6 border border-gray-700 rounded-lg mt-4"> {/* mt-6 থেকে 4 করা হলো */}
                 <DownloadResults
                   results={conversionResults}
                   format={conversionSettings.format}
@@ -229,8 +227,6 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* "Connect with OSPranto Tech" section সম্পূর্ণরূপে রিমুভ করা হলো */}
-
       </main>
 
       <Footer />
