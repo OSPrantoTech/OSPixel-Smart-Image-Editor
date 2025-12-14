@@ -1,6 +1,7 @@
 // =======================================================
-// File: page.tsx - Fixed with Premium Minimal UI
+// File: page.tsx - Final Minimalistic UI
 // Branding: OSPranto Tech - Technology with a Sense of Ease
+// Description: Compact, premium design with removed contact section.
 // =======================================================
 
 "use client"
@@ -35,20 +36,17 @@ export default function HomePage() {
   const [conversionResults, setConversionResults] = useState<ConversionResult[]>([])
   const [converter, setConverter] = useState<ImageConverter | null>(null)
 
-  // ইউটিলিটি ফাংশন এবং হ্যান্ডলার্স (পূর্বের মতো রাখা হলো)
+  // হ্যান্ডলার্স (পূর্বের মতো রাখা হলো)
   const getConverter = () => {
     if (!converter) {
       setConverter(new ImageConverter())
     }
     return converter
   }
-
   const handleConvert = async () => {
     if (uploadedFiles.length === 0) return
-
     setIsConverting(true)
     setConversionResults([])
-
     try {
       const files = uploadedFiles.map((uf) => uf.file)
       const converterInstance = getConverter()
@@ -62,14 +60,12 @@ export default function HomePage() {
       setIsConverting(false)
     }
   }
-
   const handleDownloadAll = () => {
     const converterInstance = getConverter()
     if (converterInstance) {
       converterInstance.downloadMultiple(conversionResults, conversionSettings.format)
     }
   }
-
   const handleDownloadSingle = (result: ConversionResult) => {
     const converterInstance = getConverter()
     if (converterInstance) {
@@ -79,35 +75,40 @@ export default function HomePage() {
       converterInstance.downloadFile(result.convertedBlob, newFilename)
     }
   }
-
   const handleClearResults = () => {
     setConversionResults([])
     setUploadedFiles([])
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-900 text-white"> {/* bg-background এর বদলে ডার্ক থিম নিশ্চিত করা হলো */}
+    <div className="min-h-screen flex flex-col bg-gray-900 text-white">
       <Header />
 
       <main className="flex-1">
         
-        {/* Converter Section - লেআউট পরিবর্তন করা হয়েছে: আরও সেন্ট্রালাইজড */}
-        <section id="converter" className="py-16 px-4 min-h-[calc(100vh-160px)] flex items-center justify-center">
-          <div className="container mx-auto max-w-6xl space-y-12">
+        {/* Converter Section: প্যাডিং কমানো হয়েছে এবং আরও কম্প্যাক্ট করা হয়েছে */}
+        <section 
+            id="converter" 
+            className="
+                py-10 px-4 
+                min-h-[calc(100vh-120px)] 
+                flex items-center justify-center
+            "
+        >
+          <div className="container mx-auto max-w-6xl space-y-8"> {/* space-y-12 থেকে 8 করা হলো */}
             
                 {/* হেডলাইন: ব্র্যান্ডিং সহ */}
-            <div className="text-center space-y-2">
-              <h2 className="text-4xl font-extrabold text-blue-400">OSPixel Converter</h2>
-              <p className="text-lg text-gray-400 font-manrope max-w-2xl mx-auto">
+            <div className="text-center space-y-1"> {/* space-y-2 থেকে 1 করা হলো */}
+              <h2 className="text-3xl font-extrabold text-blue-400">OSPixel Converter</h2> {/* ফন্ট সাইজ সামান্য কমানো হয়েছে */}
+              <p className="text-md text-gray-400 font-manrope max-w-2xl mx-auto">
                     OSPranto Tech: Technology with a Sense of Ease
               </p>
             </div>
 
             {/* Upload Section: ছোট এবং প্রিমিয়াম ডিজাইন */}
-            {/* যদি কোনো ফাইল আপলোড না হয়, তবে এই ডিজাইন দেখাবে */}
             {uploadedFiles.length === 0 ? (
                 // --- আপলোড বক্সের নতুন, ছোট এবং প্রিমিয়াম স্টাইল ---
-                <div className="flex justify-center">
+                <div className="flex justify-center pt-4"> {/* অতিরিক্ত স্পেস কমানো হয়েছে */}
                     <div 
                         className="
                             bg-gray-800 
@@ -120,17 +121,16 @@ export default function HomePage() {
                             max-w-md w-full 
                         "
                     >
-                        {/* FileUpload কম্পোনেন্ট, ভেতরে FileUpload লজিক থাকে */}
                         <FileUpload onFilesUploaded={setUploadedFiles} maxFiles={20} />
                     </div>
                 </div>
             ) : (
                 // --- যদি ফাইল আপলোড হয়ে যায়, তবে সেটিংস এবং প্রিভিউ সেকশন দেখাবে ---
-                <div className="grid gap-8 lg:grid-cols-3">
+                <div className="grid gap-6 lg:grid-cols-3 pt-4"> {/* gap এবং pt কমানো হয়েছে */}
                     <div className="lg:col-span-2 space-y-6">
                         <FormatSelector onSettingsChange={setConversionSettings} />
                         
-                        {/* Selected Files Card - প্রিভিউ এখন এই কার্ডের ভেতরে */}
+                        {/* Selected Files Card */}
                         <Card className="p-6 bg-gray-800 border border-gray-700">
                             <h3 className="text-lg font-semibold text-white mb-4">
                                 Selected Files ({uploadedFiles.length})
@@ -160,11 +160,10 @@ export default function HomePage() {
                     {/* Convert Button & Settings Summary */}
                     <div className="space-y-6">
                         <Card className="p-6 bg-blue-950/40 border-blue-700/50">
-                            {/* ... (Conversion Details & Button - পূর্বের মতো) ... */}
                             <div className="space-y-6">
                                 <div className="text-center">
-                                    <div className="w-16 h-16 bg-blue-600/10 text-blue-400 mx-auto mb-4 flex items-center justify-center rounded-full">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                    <div className="w-14 h-14 bg-blue-600/10 text-blue-400 mx-auto mb-3 flex items-center justify-center rounded-full">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                                             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                                         </svg>
                                     </div>
@@ -216,7 +215,7 @@ export default function HomePage() {
 
             {/* Results Section */}
             {conversionResults.length > 0 && (
-              <div className="bg-gray-800 p-8 border border-gray-700 rounded-lg">
+              <div className="bg-gray-800 p-6 border border-gray-700 rounded-lg mt-6"> {/* p-8 থেকে p-6 এবং mt-6 করা হলো */}
                 <DownloadResults
                   results={conversionResults}
                   format={conversionSettings.format}
@@ -230,29 +229,7 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* Contact Section: আরও ছোট এবং ক্লিন */}
-        <section id="contact" className="py-12 border-t border-gray-800 bg-gray-900 text-white">
-            <div className="container mx-auto max-w-6xl text-center">
-                <h3 className="text-xl font-semibold text-white mb-4">
-                    Connect with OSPranto Tech
-                </h3>
-                <p className="text-gray-500 italic mb-6">Technology with a Sense of Ease</p>
-                <div className="space-y-2 sm:space-y-0 sm:space-x-8 text-gray-400 flex flex-wrap justify-center text-sm">
-                    <p>
-                        <span className="font-medium text-blue-400">FB:</span> Adnan Hasan Pranto
-                    </p>
-                    <p>
-                        <span className="font-medium text-blue-400">Email:</span> OSPranto.Official@gmail.com
-                    </p>
-                    <p>
-                        <span className="font-medium text-blue-400">Github:</span> OSPranto Tech
-                    </p>
-                    <p>
-                        <span className="font-medium text-blue-400">Telegram:</span> @MrMysteryMoon
-                    </p>
-                </div>
-            </div>
-        </section>
+        {/* "Connect with OSPranto Tech" section সম্পূর্ণরূপে রিমুভ করা হলো */}
 
       </main>
 
