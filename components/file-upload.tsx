@@ -1,3 +1,8 @@
+// =======================================================
+// File: file-upload.tsx - MINIMALIST VERSION
+// Changes: Reduced all paddings, margins, icon sizes, and font sizes.
+// =======================================================
+
 "use client"
 
 import { useState, useCallback } from "react"
@@ -59,17 +64,17 @@ export function FileUpload({ onFilesUploaded, maxFiles = 10 }: FileUploadProps) 
   }
 
   return (
-    <div className="w-full space-y-4"> {/* space-y-6 থেকে 4 করা হলো */}
-      {/* Upload Area */}
-      <Card className="p-0 border-none shadow-none bg-transparent"> {/* p-8 থেকে p-0 করা হলো এবং Card ডিজাইন রিমুভ করা হলো */}
+    <div className="w-full space-y-3"> {/* space-y-6 থেকে 3 করা হলো */}
+      {/* Upload Area: Card এর স্টাইল page.tsx থেকে আসবে, এখানে অতিরিক্ত প্যাডিং সরিয়ে দেওয়া হলো */}
+      <Card className="p-0 border-none shadow-none bg-transparent"> 
         <div
           {...getRootProps()}
           className={`
-            border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-200 {/* p-12 থেকে p-8 করা হলো */}
+            border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all duration-200 /* p-12 থেকে p-8 করা হলো */
             ${
               isDragActive
-                ? "border-blue-500 bg-blue-900/10 scale-[1.02]"
-                : "border-blue-600/50 hover:border-blue-500/80 bg-gray-900/50" // কালার `page.tsx`-এর সাথে ম্যাচ করানো হলো
+                ? "border-blue-500 bg-blue-900/10 scale-[1.01]"
+                : "border-gray-600 hover:border-blue-500/80 bg-gray-900/50"
             }
             ${uploadedFiles.length >= maxFiles ? "opacity-50 cursor-not-allowed" : ""}
           `}
@@ -77,10 +82,10 @@ export function FileUpload({ onFilesUploaded, maxFiles = 10 }: FileUploadProps) 
           <input {...getInputProps()} />
 
           <div className="flex flex-col items-center gap-3"> {/* gap-4 থেকে 3 করা হলো */}
-            <div className="p-3 bg-blue-600/10 text-blue-400 rounded-full"> {/* p-4 থেকে 3 করা হলো এবং ডিজাইন প্রিমিয়াম করা হলো */}
+            <div className="p-3 bg-blue-600/10 text-blue-400 rounded-full"> {/* আইকন কন্টেইনার ছোট করা হলো */}
               <svg
-                width="32" /* 48 থেকে 32 করা হলো */
-                height="32" /* 48 থেকে 32 করা হলো */
+                width="28" /* 48 থেকে 28 করা হলো */
+                height="28" /* 48 থেকে 28 করা হলো */
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -95,18 +100,18 @@ export function FileUpload({ onFilesUploaded, maxFiles = 10 }: FileUploadProps) 
             </div>
 
             <div className="space-y-1"> {/* space-y-2 থেকে 1 করা হলো */}
-              <h3 className="text-lg font-semibold text-white"> {/* text-xl থেকে lg করা হলো */}
+              <h3 className="text-base font-semibold text-white"> {/* text-xl থেকে base করা হলো */}
                 {isDragActive ? "Drop your images here" : "Upload your images"}
               </h3>
-              <p className="text-sm text-gray-400 font-manrope">Drag and drop your images here, or click to browse</p> {/* text-muted-foreground থেকে text-gray-400 করা হলো */}
+              <p className="text-sm text-gray-400 font-manrope">Drag and drop your images here, or click to browse</p>
               <p className="text-xs text-gray-500">Supports: JPEG, PNG, GIF, BMP, WebP, TIFF, SVG</p> {/* text-sm থেকে xs করা হলো */}
             </div>
 
             {uploadedFiles.length < maxFiles && (
               <Button 
                     variant="default" 
-                    className="mt-3 bg-blue-600 hover:bg-blue-700 text-white" /* mt-4 থেকে 3 করা হলো এবং default প্রিমিয়াম কালার */
-                    size="sm" /* সাইজ ছোট করা হলো */
+                    className="mt-2 bg-blue-600 hover:bg-blue-700 text-white" /* mt-4 থেকে 2 করা হলো */
+                    size="sm"
                 >
                 <svg
                   width="14"
@@ -130,14 +135,14 @@ export function FileUpload({ onFilesUploaded, maxFiles = 10 }: FileUploadProps) 
         </div>
       </Card>
 
-      {/* Uploaded Files Section - এখানেও সামান্য স্পেস কমানো হলো */}
+      {/* Uploaded Files Section - আরও ছোট ও কম্প্যাক্ট করা হলো */}
       {uploadedFiles.length > 0 && (
-        <Card className="p-4 bg-gray-800 border-gray-700"> {/* p-6 থেকে 4 করা হলো */}
-          <div className="flex items-center justify-between mb-3"> {/* mb-4 থেকে 3 করা হলো */}
-            <h3 className="text-base font-semibold text-white">Uploaded Files ({uploadedFiles.length})</h3> {/* text-lg থেকে base করা হলো */}
+        <Card className="p-3 bg-gray-800 border-gray-700"> {/* p-6 থেকে 3 করা হলো */}
+          <div className="flex items-center justify-between mb-2"> {/* mb-4 থেকে 2 করা হলো */}
+            <h3 className="text-sm font-semibold text-white">Uploaded Files ({uploadedFiles.length})</h3> {/* text-lg থেকে sm করা হলো */}
             <Button
               variant="ghost"
-              size="xs" /* নতুন সাইজ */
+              size="xs" 
               onClick={() => {
                 setUploadedFiles([])
                 onFilesUploaded([])
@@ -147,38 +152,38 @@ export function FileUpload({ onFilesUploaded, maxFiles = 10 }: FileUploadProps) 
             </Button>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"> {/* gap-4 থেকে 3 করা হলো */}
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"> {/* gap-4 থেকে 2 করা হলো */}
             {uploadedFiles.map((uploadedFile) => (
               <div
                 key={uploadedFile.id}
-                className="group relative border border-gray-700 p-3 hover:border-blue-500/50 transition-colors bg-gray-900" /* p-4 থেকে 3 করা হলো */
+                className="group relative border border-gray-700 p-2 hover:border-blue-500/50 transition-colors bg-gray-900" /* p-4 থেকে 2 করা হলো */
               >
-                <div className="flex items-start gap-2"> {/* gap-3 থেকে 2 করা হলো */}
+                <div className="flex items-start gap-2"> 
                   <div className="flex-shrink-0">
                     <img
                       src={uploadedFile.preview || "/placeholder.svg"}
                       alt={uploadedFile.file.name}
-                      className="h-10 w-10 object-cover border border-gray-600 rounded-sm" /* h-12 w-12 থেকে 10 করা হলো */
+                      className="h-8 w-8 object-cover border border-gray-600 rounded-sm" /* h-12 w-12 থেকে h-8 w-8 করা হলো */
                     />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-white truncate">{uploadedFile.file.name}</p>
+                    <p className="text-xs font-medium text-white truncate">{uploadedFile.file.name}</p> {/* text-sm থেকে xs করা হলো */}
                     <p className="text-xs text-gray-500">{formatFileSize(uploadedFile.file.size)}</p>
-                    <Badge variant="secondary" className="mt-1 text-xs bg-gray-700 text-gray-300">
+                    <Badge variant="secondary" className="mt-0.5 text-xs bg-gray-700 text-gray-300"> {/* mt-1 থেকে 0.5 করা হলো */}
                       {uploadedFile.file.type.split("/")[1].toUpperCase()}
                     </Badge>
                   </div>
 
                   <Button
                     variant="ghost"
-                    size="xs" /* নতুন সাইজ */
-                    className="h-7 w-7 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:bg-gray-700" /* h-8 w-8 থেকে 7 করা হলো */
+                    size="xs" 
+                    className="h-6 w-6 p-0 opacity-0 group-hover:opacity-100 transition-opacity text-red-400 hover:bg-gray-700" /* h-7 w-7 থেকে 6 করা হলো */
                     onClick={() => removeFile(uploadedFile.id)}
                   >
                     <svg
-                      width="12"
-                      height="12"
+                      width="10" /* 12 থেকে 10 করা হলো */
+                      height="10" /* 12 থেকে 10 করা হলো */
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
